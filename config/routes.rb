@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/confirm'
-  end
   devise_for :customers
   
   root to: "public/homes#top"

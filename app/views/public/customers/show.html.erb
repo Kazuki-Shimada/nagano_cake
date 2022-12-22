@@ -1,2 +1,5 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<h1>マイページ</h1>
+<h2>登録情報</h2>
+<%= link_to '編集する', edit_public_customer(@customer) %>
+<%= form_with model: @customer do |f| %>
+<% end %>
