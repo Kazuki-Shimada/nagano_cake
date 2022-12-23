@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/edit'
+  end
   devise_for :customers
   
   root to: "public/homes#top"
   
   namespace :public do
     get 'about' => 'homes#about'
+    
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :confirm, :withdrawal]
+    resources :customers, only: [:show, :edit, :update, :confirm, :withdrawal, :update]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
