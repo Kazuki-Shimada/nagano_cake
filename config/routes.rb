@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
   devise_for :customers
   
   root to: "public/homes#top"
@@ -13,6 +9,7 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     resources :customers, only: [:show, :edit, :update, :confirm, :withdrawal, :update]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
