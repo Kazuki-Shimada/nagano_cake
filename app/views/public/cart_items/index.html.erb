@@ -1,0 +1,19 @@
+<h2>ショッピングカート</h2>
+<p>カートを空にする</p>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>小計</th>
+    <th></th>
+  </tr>
+  <%= @cart_items.each do |cart_item| %>
+  <tr>
+    <td><%= cart_item.name %></td>
+    <td><%= @item.price %></td>
+    <td><%= cart_item.amount %></td>
+    <td>
+      <%= link_to "削除する", %>
+    </td>
+  </tr>
+</table>
