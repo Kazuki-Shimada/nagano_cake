@@ -5,4 +5,37 @@
     <th>商品画像</th>
     <%= f.file_field :item_image, accept:'image/*' %>
   </tr>
+  <tr>
+    <th>商品名</th>
+    <td>
+      <%= f.text_field :name %>
+    </td>
+  </tr>
+  <tr>
+    <th>商品説明</th>
+    <td>
+      <%= f.text_field :introduction %>
+    </td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td>選択してください</td>
+  </tr>
+  <tr>
+    <th>税抜価格</th>
+    <td>
+      <%= f.text_field :price %>円
+    </td>
+  </tr>
+  <tr>
+    <th>販売ステータス</th>
+    <td></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td>
+      <%= f.submit "新規登録" %>
+    </td>
+  </tr>
 </table>
+
