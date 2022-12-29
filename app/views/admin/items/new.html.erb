@@ -19,7 +19,14 @@
   </tr>
   <tr>
     <th>ジャンル</th>
-    <td>選択してください</td>
+    <td>
+      <%= collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+        <%= genre.label do %>
+          <%= gemre.check_box %>
+          <%= genre.text%>
+        <% end %>
+      <% end %>
+    </td>
   </tr>
   <tr>
     <th>税抜価格</th>
