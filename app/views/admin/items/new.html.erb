@@ -1,9 +1,11 @@
 <h2>商品新規登録</h2>
-<%= form_with model: @item, url: new_admin_item_path do |f| %>
+<%= form_with model: @item, url:new_admin_item_path do |f| %>
   <table>
     <tr>
       <th>商品画像</th>
-      <%= f.file_field :item_image, accept:'image/*' %>
+      <td>
+        <%= f.file_field :item_image, accept:'image/*' %>
+      </td>
     </tr>
     <tr>
       <th>商品名</th>
@@ -20,9 +22,9 @@
     <tr>
       <th>ジャンル</th>
       <td>
-        <%= collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+        <%= f.collection_check_boxes(:genre, Genre.all, :id, :name) do |genre| %>
           <%= genre.label do %>
-            <%= gemre.check_box %>
+            <%= genre.check_box %>
             <%= genre.text %>
           <% end %>
         <% end %>

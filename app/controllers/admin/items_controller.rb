@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
+    
   end
 
   def new
@@ -13,9 +14,9 @@ class Admin::ItemsController < ApplicationController
   def edit
   end
   def create
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to new_admin_item_path
+    item = Item.new(item_params)
+    if item.save
+      redirect_to :action => "index"
     else
       render :new
     end
@@ -28,11 +29,16 @@ class Admin::ItemsController < ApplicationController
       render :edit
     end
   end
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to action: :index
+  end
 
   private
 
   def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :genre, :price, :status)
+    params.require(:item).permit(:item_image, :name, :introduction, :price, genre_ids: [])
   end
   def article_params
     params.require(:article).permit(:body, genre_ids: [])

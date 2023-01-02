@@ -75,4 +75,14 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "0b0cb441589a4728aeb6721e458fed02.vfs.cloud9.ap-northeast-1.amazonaws.com"
   config.active_job.queue_adapter = :inline
+
+const webpack = require('webpack')
+environment.plugins.prepend(
+  'Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery/src/jquery',
+    jQuery: 'jquery/src/jquery',
+    Popper: 'popper.js'
+  })
+)
 end

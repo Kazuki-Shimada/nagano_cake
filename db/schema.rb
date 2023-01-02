@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
     t.integer "customer_id"
     t.string "name"
     t.string "postal_code"
-    t.string "addresses"
+    t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -96,6 +96,11 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name"
+    t.text "introduction"
+    t.integer "price"
+    t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
