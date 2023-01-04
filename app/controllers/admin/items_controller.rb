@@ -1,22 +1,24 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
-    
   end
 
   def new
     @item = Item.new
+    @genre = Genre.all
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
   def create
     item = Item.new(item_params)
     if item.save
-      redirect_to :action => "index"
+      redirect_to admin_item_path(item)
     else
       render :new
     end
@@ -38,9 +40,6 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :price, genre_ids: [])
-  end
-  def article_params
-    params.require(:article).permit(:body, genre_ids: [])
+    params.require(:item).permit(:item_image, :name, :introduction, :price, :genre_id)
   end
 end
