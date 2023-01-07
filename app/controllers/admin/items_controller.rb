@@ -33,14 +33,17 @@ class Admin::ItemsController < ApplicationController
     end
   end
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    redirect_to action: :index
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to action: :index
+    else
+      render 'index'
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :price, :genre_id)
+    params.require(:item).permit(:image, :name, :introduction, :price, :genre_id, :is_active)
   end
 end

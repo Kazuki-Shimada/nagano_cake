@@ -5,7 +5,6 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
-  enum is_active: { sale: 0, stop: 1 }
 
     def get_image(width, height)
       unless image.attached?

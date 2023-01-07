@@ -31,7 +31,8 @@
       <tr>
         <th>ジャンル</th>
         <td>
-          <%= f.select :genre_id, {'ケーキ': 1, '焼き菓子': 2, 'プリン': 3, 'キャンディ': 4}, { include_blank: '-- 選択してください --'}, { class: 'form-control' , required: true } %>
+          <!--< %= f.select :genre_id, {'ケーキ': 1, '焼き菓子': 2, 'プリン': 3, 'キャンディ': 4}, { include_blank: '-- 選択してください --'}, { class: 'form-control' , required: true } %>-->
+          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class: "form-control" %>
         </td>
         <td></td>
       </tr>
@@ -47,7 +48,10 @@
       <tr>
         <th>販売ステータス</th>
         <td>
-          <!--< %= f.collection_radio_buttons :is_active, Item.is_actives_i18n, :sale, :stop %>-->
+          <%= f.radio_button :is_active, "true" %>
+          <%= f.label :is_active_true, "販売中" %>
+          <%= f.radio_button :is_active, "false" %>
+          <%= f.label :is_active_false, "販売停止中" %>
         </td>
         <td></td>
       </tr>
