@@ -1,5 +1,5 @@
 <h2>会員情報編集</h2>
-<%= form_with model: @customer, method: :patch do |f| %>
+<%= form_with model: @customer, url: public_customer_path(@customer), method: :patch do |f| %>
   <table>
     <tr>
       <th>氏名</th>
@@ -56,7 +56,7 @@
       <th>メールアドレス</th>
       <td>
         <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= f.email_field :email, class: "form-control" %>
         </div>
       </td>
       <td></td>
@@ -65,7 +65,7 @@
       <th></th>
       <td>
         <div class="actions">
-          <%= f.submit "変更内容を保存", class: "form-control" %>
+          <%= f.submit "変更内容を保存", class: "btn btn-success" %>
         </div>
       </td>
       <td>
