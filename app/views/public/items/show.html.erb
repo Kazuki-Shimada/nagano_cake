@@ -1,6 +1,15 @@
-<%= image_tag item.get_image(100, 100) %>
-<h3><%= @item.name %></h3>
-<%= @item.introduction %>
-¥<%= @item.price%>
-<p>個数選択</p>
-<p>カートに入れる</p>
+<h2 class="bg-light mx-5 w-25">商品詳細</h2>
+<div class="mx-5">
+  <%= image_tag @item.get_image(300, 200) %>
+</div>
+<div class="container text-center">
+  <h3><%= @item.name %></h3>
+  <%= @item.introduction %>
+  <div class="row align-items-end　text-center">
+    ¥<%= (@item.price* 1.1).floor %>
+    <p>(税込)</p>
+  </div>
+  
+
+</div>
+

@@ -49,9 +49,10 @@
     <tr>
       <th>会員ステータス</th>
       <td>
-        <%= @customer.is_deleted %>
+        <%= @customer.is_deleted ? '退会' : '有効' %>
       </td>
     </tr>
   </table>
-  <%= link_to%>
+  <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
+  <%= link_to "注文履歴一覧を見る", admin_order_path(@customer), class: "btn btn-primary" %>
 </div>
