@@ -9,7 +9,8 @@
     ¥<%= (@item.price* 1.1).floor %>
     <p>(税込)</p>
   </div>
-  
+  <%= f.hidden_field :name, value => "@item.name" %>
+
 
 </div>
 
