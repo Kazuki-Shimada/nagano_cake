@@ -1,30 +1,33 @@
 <h2 class="bg-light mx-5 w-50">ショッピングカート</h2>
-<p>カートを空にする</p>
-<table>
-  <tr class="bg-light">
-    <th>商品名</th>
-    <th>単価(税込)</th>
-    <th>小計</th>
-    <th></th>
-  </tr>
-  <% @cart_items.each do |cart_item| %>
-  <tr>
-    <td><%= cart_item.item.name %></td>
-    <td><%= cart_item.item.with_tax_price %></td>
-    <td><%= cart_item.subtotal %></td>
-    <!--< % @合計金額 +=  cart_item.subtotal %>-->
-    <td>
-      <!--< %= link_to "削除する", public_cart_item_path(@caart_item), method: :delete %>-->
-    </td>
-  </tr>
-  <% end %>
-</table>
-<p>買い物を続ける</p>
-<table>
-  <tr>
-    <th>合計金額</th>
-    <td>
-    </td>
-  </tr>
-</table>
-<p>情報入力に</p>
+<!--< %= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete %>-->
+<div class="container text-center">
+  <table class="table mt-5 table-bordered">
+    <tr class="bg-light">
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td></td>
+      <td><%= cart_item.subtotal %></td>
+      <td>
+        <%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to "買い物を続ける", public_items_path, class: "btn btn-primary" %>
+  <table>
+    <tr>
+      <th>合計金額</th>
+      <td>
+      </td>
+    </tr>
+  </table>
+  <p>情報入力に</p>
+</div>

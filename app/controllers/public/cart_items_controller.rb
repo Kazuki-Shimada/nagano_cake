@@ -13,8 +13,18 @@ class Public::CartItemsController < ApplicationController
       render :index
     end
   end
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    if cart_item.destroy
+      redirect_to action: :index
+    else
+      render 'index'
+    end
+  end
+
   def destroy_all
-    @destroy_all = current_customer.destroy_all
+    current_customer.cart_item.destroy_all
+    redirect_to cart_items_path
   end
 
   private
