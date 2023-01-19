@@ -11,3 +11,8 @@ ja:
         default: "%Y/%m/%d"
         long: "%Y年%m月%d日(%a)"
         short: "%m/%d"
+  enums:
+    order:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"

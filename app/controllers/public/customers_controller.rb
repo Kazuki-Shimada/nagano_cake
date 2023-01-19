@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:notice] ="You have updated book successfully."
-      redirect_to public_customer_path(@customer)
+      redirect_to customer_path(@customer)
     else render :edit
     end
   end

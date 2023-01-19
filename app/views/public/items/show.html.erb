@@ -1,6 +1,4 @@
 <h2 class="bg-light mx-5 w-25">商品詳細</h2>
-<%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
-<%= f.hidden_field :item_id, :value => @item.id %>
 <div class="mx-5">
   <%= image_tag @item.get_image(300, 200) %>
 </div>
@@ -11,10 +9,10 @@
     ¥<%= (@item.price* 1.1).floor %>
     <p>(税込)</p>
   </div>
-
+<%= form_with model: @cart_item, url: cart_items_path do |f| %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
   <%= f.select :amount, *[1..10], include_blank: "個数選択", class: "form_control" %>
   <%= f.submit "カートに入れる", class: "btn btn-success" %>
-
 <% end %>
 
 </div>

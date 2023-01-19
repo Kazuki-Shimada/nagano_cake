@@ -1,6 +1,23 @@
-<h2>注文情報入力</h2>
-<%= form_with model: @order do |f| %>
-  <h2>支払い方法</h2>
-  <h2>お届け先</h2>
-<% end %>
-  <p>確認画面へ進む</p>
+<div class="container">
+  <h2 class="bg-light mx-5 w-50">注文情報入力</h2>
+  <%= form_with model: @order do |f| %>
+    <h2 class="mt-5">支払い方法</h2>
+    <%= f.radio_button :payment_method, "credit_card" %>
+    <%= f.label :payment_method_credit_card, "クレジットカード" %></br>
+    <%= f.radio_button :payment_method, "transfer" %>
+    <%= f.label :payment_method_credit_card, "銀行振込" %>
+
+    <h2 class="mt-5">お届け先</h2>
+    <%= f.radio_button :address_id, "current_customer.address.id" %>
+    <%= f.label :current_customer_address, "ご自身の住所" %></br>
+    〒<%= current_customer.postal_code %><%= current_customer.address %></br>
+    <%= current_customer.last_name %><%= current_customer.first_name %></br>
+    <%= f.radio_button :address_id, "address.id" %>
+    <%= f.label :selected_address, "登録済住所から選択" %></br>
+    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+    <%= f.radio_button :address_id, "address.id" %>
+    <%= form_with model: @address do |f| %>
+    
+    <% end %>
+  <% end %>
+</div>
