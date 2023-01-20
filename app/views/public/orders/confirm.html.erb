@@ -1,5 +1,5 @@
 <div class="container text-center">
-<h2 class="bg-light mx-5 w-25">注文情報確認</h2>
+<h2 class="bg-light mx-5 w-50">注文情報確認</h2>
 <table class="table mt-5 table-bordered">
     <tr class="bg-light">
       <th>商品名</th>
@@ -16,6 +16,13 @@
       <td><%= cart_item.subtotal %></td>
     </tr>
     <% end %>
+  </table>
+  <table class="table table-bordered">
+    <tr>
+      <th>送料</th>
+      <td><%= postage %></td>
+    </tr>
+    <tr></tr>
   </table>
 <%= form_with model: @order do |f| %>
   <h2>支払い方法</h2>

@@ -15,12 +15,14 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'about' => 'homes#about'
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :confirm, :withdrawal, :update]
+    get '/customers/confirm' => 'customers#confirm'
+    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    resources :customers, only: [:show, :edit, :update, :withdrawal, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    # delete :cart_items, to: 'cart_items#destroy_all'
-    resources :orders, only: [:new, :confirm, :finish, :create, :index, :show]
+    get '/orders/confirm' => 'orders#confirm'
+    resources :orders, only: [:new, :finish, :create, :index, :show]
   end
   namespace :admin do
     get 'homes/top'
