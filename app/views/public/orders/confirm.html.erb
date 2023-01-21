@@ -20,11 +20,18 @@
   <table class="table table-bordered">
     <tr>
       <th>送料</th>
-      <td><%= postage %></td>
+      <td>800</td>
     </tr>
-    <tr></tr>
+    <tr>
+      <th>商品合計</th>
+      <td><%= @total %></td>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <td><%= @total + 800 %></td>
+    </tr>
   </table>
-<%= form_with model: @order do |f| %>
   <h2>支払い方法</h2>
+  <%= @order.method_of_payment %>
   <h2>お届け先</h2>
-<% end %>
+  <%= @order.address.address_display %>

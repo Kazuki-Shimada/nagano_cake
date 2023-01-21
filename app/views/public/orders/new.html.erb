@@ -1,37 +1,36 @@
 <div class="container">
   <h2 class="bg-light mx-5 w-50">注文情報入力</h2>
-  <%= form_with model: @order do |f| %>
+  <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
     <h2 class="mt-5">支払い方法</h2>
-    <%= f.radio_button :payment_method, "credit_card" %>
+    <%= f.radio_button :method_of_payment, "credit_card" %>
     <%= f.label :payment_method_credit_card, "クレジットカード" %></br>
-    <%= f.radio_button :payment_method, "transfer" %>
+    <%= f.radio_button :method_of_payment, "transfer" %>
     <%= f.label :payment_method_credit_card, "銀行振込" %>
 
     <h2 class="mt-5">お届け先</h2>
-    <%= f.radio_button :address_id, "current_customer.address.id" %>
+    <%= f.radio_button :address_option, 0 %>
     <%= f.label :current_customer_address, "ご自身の住所" %></br>
     〒<%= current_customer.postal_code %><%= current_customer.address %></br>
     <%= current_customer.last_name %><%= current_customer.first_name %></br>
 
-    <%= f.radio_button :address_id, "registered_address.id" %>
+    <%= f.radio_button :address_option, 1 %>
     <%= f.label :registered_address, "登録済住所から選択" %></br>
-    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></br>
+    <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %></br>
 
-    <%= f.radio_button :address_id, "new_address.id" %>
+    <%= f.radio_button :address_option, 2 %>
     <%= f.label :new_address, "新しいお届け先" %></br>
-    <%= form_with model: @address do |f| %>
       <table class="table table-borderless">
         <tr>
           <th>郵便番号(ハイフンなし)</th>
           <td>
-            <%= f.text_field :postal_code %>
+            <%= f.text_field :shipping_postal_code %>
           </td>
           <td></td>
         </tr>
         <tr>
           <th>住所</th>
           <td colspan="2">
-            <%= f.text_field :address %>
+            <%= f.text_field :shipping_address %>
           </td>
         </tr>
         <tr>
@@ -42,7 +41,6 @@
           <td></td>
         </tr>
       </table>
-    <% end %>
-    <%= link_to "確認画面へ進む", orders_confirm_path, class: "btn btn-success" %>
+    <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
   <% end %>
 </div>
