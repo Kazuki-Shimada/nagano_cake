@@ -32,6 +32,10 @@
     </tr>
   </table>
   <h2>支払い方法</h2>
-  <%= @order.method_of_payment %>
+  <%= @order.payment_method_i18n %>
   <h2>お届け先</h2>
-  <%= @order.address.address_display %>
+  〒 <%= @order.postal_code %> <%= @order.address %></br>
+  <%= @order.name %>
+  <%= form_with model: @order, method: :post do |f| %>
+    <%= f.submit "注文を確定する", class: "btn btn-success" %>
+  <% end %>

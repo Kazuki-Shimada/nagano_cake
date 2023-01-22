@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -90,17 +90,17 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "name"
-    t.text "introduction"
-    t.integer "price"
-    t.boolean "is_active"
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.integer "price", null: false
+    t.boolean "is_active", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -117,12 +117,12 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
-    t.string "shipping_postal_code"
-    t.string "shipping_address"
+    t.string "postal_code"
+    t.string "address"
     t.string "name"
     t.integer "postage"
     t.integer "billing_amount"
-    t.integer "method_of_payment"
+    t.integer "payment_method"
     t.integer "is_ordered"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
