@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
 
   create_table "order_details", force: :cascade do |t|
     t.integer "order_id"
-    t.integer "items_id"
-    t.integer "is_created"
+    t.integer "item_id"
+    t.integer "item_status", default: 0
     t.integer "price"
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_073439) do
     t.string "name"
     t.integer "postage"
     t.integer "billing_amount"
-    t.integer "payment_method"
-    t.integer "is_ordered"
+    t.integer "payment_method", default: 0
+    t.integer "order_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
