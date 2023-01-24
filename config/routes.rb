@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'about' => 'homes#about'
     resources :items, only: [:index, :show]
-    get '/customers/confirm' => 'customers#confirm'
-    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    get 'customers/confirm' => 'customers#confirm'
+    patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     resources :customers, only: [:show, :edit, :update, :withdrawal, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/finish' => 'orders#finish'
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get 'homes/top'
+    patch 'order_details/:id' => 'order_details#update', as: 'admin_order_details'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :edit, :show, :update]
