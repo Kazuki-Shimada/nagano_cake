@@ -11,7 +11,7 @@
     </tr>
     <tr>
       <th>配送先</th>
-      <td>〒<%= @order.postal_code %><%= @order.address %></br>
+      <td>〒 <%= @order.postal_code %> <%= @order.address %></br>
       <%= @order.name %></td>
     </tr>
     <tr>
@@ -44,7 +44,7 @@
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.price * order_detail.amount %></td>
       <td>
-        <%= form_with model: order_detail, url: admin_admin_order_details_path(order_detail), method: :patch do |f| %>
+        <%= form_with model: order_detail, url: admin_order_details_path(order_detail), method: :patch do |f| %>
           <%= f.select :item_status, OrderDetail.item_statuses.keys.map{|k| [I18n.t("enums.order_detail.item_status.#{k}"), k]} %>
           <%= f.submit "更新", class: "btn btn-success" %>
         <% end %>

@@ -1,17 +1,19 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer)
     @total = 0
   end
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    if @cart_item.save
-      flash[:notice] ="カートに追加しました"
-      redirect_to cart_items_path
+    if current_customer.cart_items.find_by(item_id: @cart_item.item_id)
+      @cart_item2 = current_customer.cart_items.find_by(item_id: @cart_item.item_id)
+      @cart_item2.amount += @cart_item.amount
+      @cart_item2.save
     else
-      render :index
+      @cart_item.save
     end
+    redirect_to cart_items_path
   end
 
   def destroy

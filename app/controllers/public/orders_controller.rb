@@ -8,14 +8,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    @order = Order.where(customer_id: current_customer)
   end
 
   def show
     @order = Order.find(params[:id])
   end
   def confirm
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer)
     @total = 0
     @order = Order.new
     if params[:order][:address_option] == "0"

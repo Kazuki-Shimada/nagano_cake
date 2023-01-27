@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get 'about' => 'homes#about'
+    get 'top' => 'homes#top'
     resources :items, only: [:index, :show]
     get 'customers/confirm' => 'customers#confirm'
     patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get 'homes/top'
-    patch 'order_details/:id' => 'order_details#update', as: 'admin_order_details'
+    patch 'order_details/:id' => 'order_details#update', as: 'order_details'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :edit, :show, :update]
